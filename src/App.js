@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { AuthContextProvider } from './components/context/auth/AuthContext'
+import { AppContextProvider } from './components/context/app/AppContext'
+
+import Home from './components/pages/Home'
+import Templates from './components/pages/Templates'
+import Register from './components/auth/Register'
+import Login from './components/auth/Login'
+import Board from './components/boards/Board'
+import NavLinks from './components/auth/NavLinks'
+
+export default () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <AuthContextProvider>
+        <AppContextProvider>
+          <div className='App'>
+            <div className='header'>
+              <h2>wOrK iN pRoGrEsS</h2>
+              <NavLinks />
+            </div>
+            <div className='main-content'>
+              <Switch>
+                <Route exact path='/home' component={Home} />
+                <Route exact path='/' component={Login} />
+                <Route exact path='/register' component={Register} />
+                <Route exact path='/board' component={Board} />
+                <Route exact path='/templates' component={Templates} />
+              </Switch>
+            </div>
+          </div>
+        </AppContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
+  )
 }
-
-export default App;
