@@ -1,38 +1,752 @@
 .App {
-  text-align: center;
+  box-sizing: border-box;
+  margin: 0 auto;  
+}
+body{
+  font-family: 'Courier New', Courier, monospace,Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.authLinks{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width:200;
+  padding: 2px;
+  font-weight: 900;
+  color:purple;
+}
+.user-name, .register, .login, .logout{
+  border:2px solid blue;
+  flex-grow: 2;
+  margin:2px;
+  text-decoration: none;
+}
+.alert {
+  padding: 0.7rem;
+  margin: 1rem 0;
+  opacity: 0.9;
+  background: var(--light-color);
+  color: #333;
+}
+.btn-danger,
+.bg-danger,
+.badge-danger,
+.alert-danger {
+  background: var(--danger-color);
+  color: #fff;
+}
+
+.login-container, .register-container  {
+  border: 1px solid lightgrey;
+  width:50%;
+  text-align: center;
+  margin-left: 300px;
+  margin-top:25px;
+  padding: 10px;
+  border-radius: 5px;
+}
+.form-group {
+  margin: .2rem 0;
+  display: flex;
+}
+.form-group label {
+  width:25%;
+  padding: 5px;
+  margin: 10px 0 22px 10px;
+  text-align: left;
+}
+.form-group input {
+  width:50%;
+  padding: 12px;
+  margin: 10px 0 22px 10px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  background: #ffffff;
+}
+
+.user-login-form input[type=text]:focus,
+.user-login-form input[type=password]:focus{
+    background-color: rgb(194, 192, 192);
+    outline: none;
+}
+.user-login-form input[type=text],
+.user-login-form input[type=password] {
+  width:80%;
+  padding: 12px;
+  margin: 10px 0 22px 10px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  background: #ffffff;
+}
+.login-error{
+  color: red;
+  font-weight: bold;
+  padding: 3px;
+}
+.login-button {
+  background: limegreen;
+  border-radius: 5px;
+  font-weight:bold;
+  padding: 15px 10px;
+  border: none;
+  cursor: pointer;
+  width: 20%;
+  margin-bottom:10px;
   color: white;
+  opacity: 0.8;
+}
+.main-content{
+  display: flex;
+  flex-direction: row;
+}
+/*Nav*/
+.home-left-sidebar {
+  border:5px solid red;
+  /* margin: 40px 0 0; */
+  margin: 10px;
+  width:25%;
+}
+/* Board */
+.btn-add-board{
+  float: right;
+  border:none;
+  width:10px;
+  border-radius: 3px;
+  cursor: pointer;
+  padding:6px;
+  text-align: center;
+  background:rgb(99, 240, 64);
+  color:beige;
+  margin:3px 15px;
+  font-weight: 900;
+}
+* {
+  margin: 0;
+}
+.container {
+  width:100%;
+  margin: 0 auto;
+}
+.header {
+  display: flex;
+  /* background: #1a6aa7; */
+  background: rgb(137, 250, 109);
+  margin-top:0;
+  height:2.2em;
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.header input{
+  width:220px;
+  background:rgb(178, 245, 161);
+  padding:10px;
+  border-radius: 3px;
+  border:none;
+  left:0;
+  margin:3px 0;
+  margin-left:10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: white; /* #172b4d;*/
+}
+.header .board-search {
+  color:white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header span img{
+  width:15%;
+  margin-top:5px;
+  float: left;
+}
+.header h2{
+  /* background-image: url(https://a.trellocdn.com/prgb/dist/images/header-logo-2x.01ef898….png); */
+  width:100%;
+  color:purple;
+  margin: 0 5px;
+  text-align: center;
+  /* font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+  font-family: monospace;
+}
+.add-board-form{
+  width:250px;
+  height:60px;
+  margin:10px;
+  padding:10px;
+  align-content: center;
+  /* background:rgb(190, 248, 190);
+  border:5px solid yellowgreen; */
+  background-color: #cae8ca;
+  border: 2px solid #4CAF50;
+
+}
+.board-input{
+  width:200px;
+  border:5px solid yellowgreen;
+  /* border: none; */
+  cursor: pointer;
+  padding:5px;
+  border-radius: 3px;
+}
+.close-board-button {
+  padding: 6px;
+  margin: 5px;
+  width:80px;
+  background:rgb(99, 240, 84);
+  color:black;
+  font-weight: 800;
+  border:none;
+  border-radius: 3px;
+}
+
+/*Board- Main */
+.body{
+  display: block;
+}
+ .main-board-div{
+  width:643px;
+  /* margin:10px 10px 10px 300px; */
+  margin:10px 10px 10px 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.board-display {
+  width:150px;
+  height:80px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 3px;
+  font-size:14px;
+  font-weight: 900;
+  background: lightgreen;
+  text-align: center;
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+}
+.board-div{
+  max-width:300px;
+  height:100px;
+  float: right;
+  cursor: pointer;
+}
+
+/*LISTS*/
+
+.list-div-container{
+  /* width:643px; */
+  height:650px;
+}
+
+.list-page{
+  width:643px;
+  /* height:650px; */
+  margin:10px 10px 10px 300px;
+  display: flex;
+  flex-wrap: wrap;
+  /* border:5px solid green; */
+}
+.all-list-div{
+  width:100%;
+  margin-bottom:10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.list-div{
+  /* display: inline-block; */
+    margin: 10px;
+    height: 100%;
+    width: 250px;
+    padding:20px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    background-color:#ebecf0;
+  box-shadow: 0 1px 0 rgba(9,30,66,.25);
+    
+}
+
+.add-list-input{
+  width:150px;
+  border-radius: 3px;
+  height: auto;
+  padding: 10px
+}
+.add-list-btn{
+   /* float: left; */
+   border:none;
+   color:beige;
+   font-weight: bold;
+    margin:5px;
+    padding: 5px;
+    /* background:rgb(84, 179, 84); */
+    background:rgb(99, 240, 84);
+    color:whitesmoke;
+    font-weight: 800;
+    border-radius: 3px;
+}
+.disp-board-name{
+  text-align: center;
+  font-weight: 900;
+  width:200px;
+  color:purple;
+  background:rgb(99, 240, 84);
+  padding:5px;
+  margin:10px;
+  border-radius: 3px;
+}
+.list-form {
+  width:205px;
+  height:70px;
+  margin:10px;
+  padding:10px;
+  align-content: center;
+  background-color: #ebecf0;
+  border-radius: 5px;
+  box-shadow: 0 1px 0 rgba(9,30,66,.25);
+
+  /* border: 2px solid #4CAF50; */
+}
+.list-header{
+  display: inline-block;
+  background: lightgray;
+  /* background:rgb(74, 247, 80); */
+  width:90%;
+  border-radius: 3px;
+  border:none;
+  text-align: center;
+  padding: 8px;
+  margin-bottom: 2px;
+  font-weight: bold;
+  /* border:5px solid green; */
+}
+
+.add-card-div{
+  width:95%;
+  background: lightgray;
+  border:none;
+  /* background:rgb(74, 247, 80); */
+  /* margin-top:5px; */
+  padding: 7px;
+  border-radius: 3px;
+  
+}
+.add-card-link{
+  /* border:2px solid magenta; */
+  background: transparent;
+  padding: 5px;
+  border:none;
+}
+.add-card-btn{
+  background:rgb(74, 247, 80);
+  padding: 3px;
+  border-radius: 3px;
+  color:black;
+   font-weight: bold;
+  padding: 10px;
+  border:none;
+  float: left;
+}
+ .X-image{
+  float: left;
+  padding: 8px;
+  background:rgb(74, 247, 80);
+   border-radius: 3px;
+  color:black;
+  margin-left:5%;
+   font-weight: bold;
+} 
+.list-div .card-text-input{
+  padding:8px;
+  width:90%;
+  border:groove;
+}
+.card-container {
+  padding:5px;
+  /* border:5px solid red; */
+}
+.card-div {
+  display: flex;
+  border:none;
+  box-shadow: 0 1px 0 rgba(9,30,66,.25);
+  padding:5px;
+  margin-bottom: 8px;
+  font-size:15px;
+  background: #fff;
+  border-radius: 3px;
+  cursor: move;
+}
+.card-desc{
+  flex-grow: 4;
+  text-align: left;
+}
+.card-edit-image{
+  width:15px;
+  flex-basis: 1;
+  cursor: pointer;
+}
+
+.drag-list{
+  border:none;
+  padding:10px;
+  margin-bottom: 8px;
+  font-size:15px;
+  background: #fff;
+  border-radius: 3px;
+  /* cursor: move; */
+}
+.home-container {
+  display: flex;
+  flex-direction: row;
+  /* margin: 40px 0 0; */
+  margin-top: 10px;
+  width:70%;
+ /* border: 5px solid purple; */
+}
+.template-container {
+  /* margin-top: 40px; */
+  margin-top: 10px;
+  width: 50%;
+  padding: 20px;
+  border:5px solid blue;
+}
+ .board-container{
+  /* margin-top: 40px; */
+  margin-top: 10px;
+  width: 70%;
+  padding: 20px;
+  /* border:5px solid blue; */
+}
+
+.home-main-content {
+  border:5px solid green;
+  margin-top: 10px;
+  /* padding: 45px; */
+  width: 420px;
+  /* width:70%; */
+  flex-direction: column;
+  
+}
+
+.background-image-div{
+  height:108px;
+  background-color: #fdf4e7;
+  /* border: 2px solid blue; */
+  margin-top:10px;
+  /* background-image: url(https://a.trellocdn.com/prgb/dist/images/home/orientation/no-content.e25c676458c1f4cb280b.svg); */
+}
+.home-text-div{
+  box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    padding: 16px;
+    width: 100%;
+}
+.home-right-sidebar {
+  border:5px solid blue;
+  width: 100%;
+  margin-top: 10px;
+  max-width: 342px;
+  width: 100%;
+  padding-left: 50px;
+  /* width: 342px; */
+  /* width:30%; */
+}
+nav {
+  /* margin: 40px 0 0; */
+  padding:20px;
+  width: 240px;
+  /* border:5px solid blue; */
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+  margin-bottom: 4px;
+  padding: 5px;
+  background-color:rgb(149, 248, 153);
+  text-align: center;
+  display: list-item;
+  color: black;
+  font-weight: bold;
+}
+.create-board-div{
+  background-color: rgb(167, 240, 95); /* rgb(149, 248, 153);*/
+  text-align: center;
+  width:150px;
+  height:80px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 3px;
+  font-size:14px;
+  font-weight: 900;
+  cursor: pointer;
+}
+.add-list-div {
+  background-color:#ebecf0;
+  text-align: center;
+  width:230px;
+  height:30px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 3px;
+  font-size:14px;
+  font-weight: 900;
+  cursor: pointer;
+}
+.hide {
+	display: none
+}
+.show {
+	display: block
+}
+.card-editor-overlay {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.3);
+  /* background-color: #4CAF50; */
+  z-index: 10;
+  position: fixed;
+  /* position: sticky; */
+  cursor: pointer;
+}
+.close-overlay {
+  /* right:128px; */
+  /* top:16px; */
+  right: 0;
+  font-size: 15px;
+  color:blue;
+  position: fixed;
+  background: chartreuse;
+  border-radius: 3px;
+  padding:10px;
+  margin:10px;
+  font-weight: 1000;
+  width:80px;
+    /* height:80px; */
+  /* background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/113212/cross.png) no-repeat center center; */
+}
+.card-editor{
+    top: 128px;
+    left: 16px;
+    position: relative;
+  display: flex;
+}
+.edit-card-name {
+  margin-left:27px;
+  margin-top:30px;
+  padding:5px;
+  border-radius: 5px;
+  width:190px;
+  overflow: hidden;
+  word-wrap: wrap;
+}
+.save-card-name{
+  margin-left:27px;
+  padding: 5px;
+  margin: 5px;
+  width:50px;
+  background:rgb(99, 240, 84);
+  color:black;
+  font-weight: 800;
+  border:none;
+  border-radius: 3px;
+}
+.card-edit-div {
+ z-index: 10;
+ position: relative;
+}
+.card-ops-div {
+  opacity: 1;
+  margin-left:10px;
+  margin-top:30px;
+  background:transparent;
+  top:0;
+}
+.card-ops-a-tag{
+    background: rgba(0,0,0,.6);
+    display: flex;
+    border-radius: 3px;
+    clear: both;
+    color: #e6e6e6;
+    margin-bottom: 8px;
+    float: left;
+    padding: 6px 12px 6px 12px;
+    text-decoration: none;
+}
+.home-image{
+  width:20px;
+  cursor: pointer;
+  left:0;
+  padding: 8px;
+}
+.card-image {
+  width:18px;
+  cursor: pointer;
+  text-align: left;
+  left:0;
+  padding: 1px;
+  margin-top: 1px;
+  background: snow;
+}
+.card-label {
+  flex-grow: 3;
+  margin-left:4px;
+  text-align: left;
+  padding: 1px;
+  color: snow;
+  font-size:13px;
+  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+}
+
+.copy-card-editor-overlay {
+  /* display: block; */
+  margin-left:250px;
+  width: 300px;
+  height: 310px;
+  top: 80px;
+  left: 0px;
+  right: 0;
+  bottom: 0;
+  border-radius: 5px;
+  /* background-color: #e6e6e6; */
+  z-index: 11;
+  /* overflow-y: scroll; */
+  position: fixed;
+  cursor: pointer;
+  background: whitesmoke;
+}
+.copy-card-header{
+  padding:10px;
+  display: flex;
+  color:slateblue;
+}
+.copy-card-label {
+  flex-grow: 4;
+  text-align: center;
+  padding: 3px;
+  font-weight: bold;
+  color:slateblue;
+}
+.card-del-image {
+  padding: 3px;
+  background: transparent;
+  width:15px;
+}
+.copy-op-form {
+  /* border-top:1px solid gray; */
+  background: #fff;
+  margin:10px;
+  height: 100px;
+}
+.copy-form-title {
+  text-align: left;
+  padding: 5px;
+  font-weight: 800;
+  color:slategrey;
+  font-size: 13px;
+}
+.copy-form-desc {
+  border-radius: 5px;
+  padding:5px;
+}
+.copy-form-copy-to {
+  text-align: left;
+  padding: 5px;
+  font-weight: 800;
+  color:slateblue;
+  background: whitesmoke;
+  font-size: 13px;
+
+}
+.copy-form-select-board-div {
+  display: flex;
+  justify-content: flex-start;
+  padding: 2px;
+  /* background: rgb(235, 232, 232); */
+  background: #fff;
+  /* border-radius: 5px; */
+}
+.copy-form-board-inner-label{
+  width:15%;
+  text-align: left;
+  font-size: 14px;
+  color:slategrey;
+  padding: 5px;
+  font-weight: bold;
+  margin-bottom: 1px solid #f4f4f4;
+}
+.choose-board-input {
+  width:70%;
+  text-align: left;
+  padding: 5px;
+  border:none;
+  border-radius: 3px;
+  margin-bottom: 5px;
+}
+.copy-form-boards-list{
+  display: block;
+  width:190px;
+  padding:8px;
+  text-align: left;
+  border:1px solid slategray;
+  overflow: hidden;
+}
+.copy-form-board-desc{
+  display: block;
+  text-align: left;
+  margin-left:10px;
+  font-size: 14px;
+  margin-bottom:3px ;
+  padding:5px;
+  /* border-bottom:1px dotted #ccc; */
+  font-weight: 200;
+  background-color: #fafafa;
+    width: 200px;
+    border-radius: 3px;
+}
+
+.btn-update-card-details{
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border:none;
+  background:rgb(99, 240, 84);
+  font-weight: 900;
+  color: black;
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  /* background: #1a6aa7; */
+  background: rgb(137, 250, 109);
+  margin-top:0;
+  height:2.2em;
+  width: 100%;
+}
+.header h2{
+  width:80%;
+  color:purple;
+  margin: 0 5px;
+  text-align: center;
+  font-family: monospace;
+}
+
+.wip {
+  width:30%;
+}
+.links-one, .links-two{
+  display: inline-block;
+  padding: 5px;
+  margin-right: 5px;
+  background: purple;
+  color:yellow;
+}
+.links-one, .links-two a{
+  color:yellow;
+
 }
