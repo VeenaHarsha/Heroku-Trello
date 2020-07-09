@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react'
-import Lists from '../lists/Lists'
+import BoardItem from './BoardItem'
 import { AppContext } from '../context/app/AppContext'
 import { AuthContext } from '../context/auth/AuthContext'
 
 function Board () {
   const { user } = useContext(AuthContext)
-  const { showBoards, showLists, boards, getBoards, addBoard, clickBoard } = useContext(AppContext)
+  const { boards, getBoards, addBoard, clickBoard } = useContext(AppContext)
   const [board, setBoard] = useState({
     boardname: '',
     userid: ''
@@ -14,8 +14,8 @@ function Board () {
   const [showAddBoard, setShowAddBoard] = useState(false)
 
   useEffect(() => {
-    getBoards(user.id)
-  }, [])
+    getBoards(user)
+  }, [user])
 
   const onChange = e => setBoard({ ...board, [e.target.name]: e.target.value })
 
@@ -28,7 +28,6 @@ function Board () {
     })
     setShowAddBoard(!showAddBoard)
   }
-
   return (
     <div className='container'>
       {showAddBoard &&
@@ -51,27 +50,15 @@ function Board () {
           </form>
         </div>}
       <div className='main-board-div'>
-        {showBoards &&
-          <>
-            {boards.length && boards.map((board, i) => (
-              <div
-                key={i}
-                className='board-display'
-                onClick={() => clickBoard({ selBoardId: board.id, selBoardName: board.boardname })}
-              >
-                {board.boardname}
-              </div>
-            ))}
-            <div
-              className='create-board-div'
-              onClick={() => { setShowAddBoard(!showAddBoard) }}
-            >
-              Create New Board
-            </div>
-          </>}
-      </div>
-      <div className='list-div-container'>
-        {showLists && <Lists />}
+        {boards.length && boards.map((board, i) => (
+          <BoardItem key={board.id} board={board} />
+        ))}
+        <div
+          className='create-board-div'
+          onClick={() => { setShowAddBoard(!showAddBoard) }}
+        >
+          Create New Board
+        </div>
       </div>
     </div>
   )

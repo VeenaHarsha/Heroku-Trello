@@ -10,9 +10,8 @@ function CardsList ({ list }) {
   const selListId = list.id
 
   useEffect(() => {
-    // getLists(selBoard)
     getListCards(selBoard, selListId)
-  }, [])
+  }, [selListId])
 
   const submitAddCard = async (event) => {
     event.preventDefault()

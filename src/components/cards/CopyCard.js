@@ -95,8 +95,6 @@ function CopyCard ({ card, list }) {
           <button
             type='submit'
             className='btn-update-card-details'
-            // onClick={(e) => { onAddCard(e, addTextArea, boardSelect, listSelect) }}
-            // onClick={(e) => handleCopyCardForm(e, addTextArea, boardSelect, listSelect)}
             onClick={() => dispatch({ type: 'HANDLE_CREATE_CARD_FORM' })}
           >
                     Create Card

@@ -22,11 +22,9 @@ function ListItem ({ list }) {
     e.preventDefault()
     e.dataTransfer.dropEffect = 'move'
   }
-
   const handleDragEnter = (e) => {
     e.currentTarget.style.border = 'dashed'
   }
-
   const handleDragLeave = (e) => {
     e.currentTarget.style.border = 'none'
   }
@@ -38,42 +36,39 @@ function ListItem ({ list }) {
     updateListTitle(list.id, listName)
     handleEditClick()
   }
-
   const handleEditName = (event) => {
     setListName(event.target.value)
   }
   return (
-    <>
-      <div
-        className='list-div'
-        draggable
-        onDragStart={(e) => handleDragStart(e, list)}
-        onDragEnter={(e) => handleDragEnter(e)}
-        onDragEnd={(e) => handleDragEnd(e)}
-        onDragOver={(e) => handleDragOver(e)}
-        onDragLeave={(e) => handleDragLeave(e)}
-      >
-        {editListTitle
-          ? <form onSubmit={updateTitle}>
-            <input
-              type='text'
-              className='edit-list-input'
-              onChange={handleEditName}
-              value={listName}
-            />
-          </form>
-          : <span
-            className='list-header'
-            onClick={handleEditClick}
-          >
-            {listName}
-          </span>}
-        <div>
-          <CardsList list={list} />
-        </div>
-
+    <div
+      className='list-div'
+      draggable
+      onDragStart={(e) => handleDragStart(e, list)}
+      onDragEnter={(e) => handleDragEnter(e)}
+      onDragEnd={(e) => handleDragEnd(e)}
+      onDragOver={(e) => handleDragOver(e)}
+      onDragLeave={(e) => handleDragLeave(e)}
+    >
+      {editListTitle
+        ? <form onSubmit={updateTitle}>
+          <input
+            type='text'
+            className='edit-list-input'
+            onChange={handleEditName}
+            value={listName}
+          />
+        </form>
+        : <span
+          className='list-header'
+          onClick={handleEditClick}
+        >
+          {list.listname}
+        </span>}
+      <div>
+        <CardsList list={list} />
       </div>
-    </>
+
+    </div>
   )
 }
 

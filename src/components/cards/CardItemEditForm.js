@@ -88,13 +88,11 @@ function CardItemEditForm ({ card, list }) {
         <CopyCard
           card={card}
           list={list}
-          // onCopyCard={handleCopyCard}
         />}
       {showMoveCardForm &&
         <MoveCard
           card={card}
           list={list}
-          // onMoveCard={handleMoveCard}
         />}
     </>
   )

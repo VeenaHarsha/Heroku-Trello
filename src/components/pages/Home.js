@@ -10,9 +10,8 @@ function Home () {
         <div className='home-main-content'>
 
           <div className='home-text-div'>
-            <span>Stay up to date with Trello...</span>
+            <strong>Stay up to date with Trello...</strong>
           </div>
-          <div className='background-image-div' />
         </div>
         <div className='home-right-sidebar'>
           <strong>Recently Viewed...</strong>

@@ -17,9 +17,7 @@ function MoveCard ({ card, list }) {
     try {
       const response = await window.fetch(`http://localhost:2809/trello/list/${boardSelect}`)
       const data = await response.json()
-      console.log('Warranttt..', data, boardSelect)
       setFiltLists(data)
-      console.log('VV-- Warranty..', filtLists)
     } catch (err) {
       dispatch({ type: 'ERROR', payLoad: err })
     }

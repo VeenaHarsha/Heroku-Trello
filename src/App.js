@@ -9,6 +9,7 @@ import Templates from './components/pages/Templates'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import Board from './components/boards/Board'
+import Lists from './components/lists/Lists'
 import NavLinks from './components/auth/NavLinks'
 
 export default () => {
@@ -23,11 +24,12 @@ export default () => {
             </div>
             <div className='main-content'>
               <Switch>
-                <Route exact path='/home' component={Home} />
+                <Route path='/home' component={Home} />
                 <Route exact path='/' component={Login} />
-                <Route exact path='/register' component={Register} />
+                <Route path='/register' component={Register} />
                 <Route exact path='/board' component={Board} />
-                <Route exact path='/templates' component={Templates} />
+                <Route path='/board/:id' component={Lists} />
+                <Route path='/templates' component={Templates} />
               </Switch>
             </div>
           </div>

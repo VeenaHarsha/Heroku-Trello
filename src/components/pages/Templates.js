@@ -6,7 +6,7 @@ function Templates () {
     <>
       <SideNav className='home-left-sidebar' />
       <div className='template-container'>
-        <h1>Templates... </h1>
+        <strong>Templates... </strong>
       </div>
     </>
   )

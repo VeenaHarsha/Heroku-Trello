@@ -5,9 +5,7 @@ const initialState = {
   boards: [],
   lists: [],
   selBoard: '',
-  selBoardName: '',
-  showBoards: true,
-  showLists: false
+  selBoardName: ''
 }
 
 export const AppContext = createContext()
@@ -24,7 +22,7 @@ export const AppContextProvider = (props) => {
       }
     }
     try {
-      const response = await window.fetch(`http://localhost:2809/trello/board/${user}`, options)
+      const response = await window.fetch(`http://localhost:2809/trello/board/${user.id}`, options)
       const data = await response.json()
       dispatch({ type: 'GET_BOARD_LIST', payload: data })
     } catch (err) {
@@ -33,7 +31,6 @@ export const AppContextProvider = (props) => {
   }
 
   const addBoard = async (formData) => {
-    console.log('Form Data:', formData)
     const options = {
       method: 'POST',
       headers: {
@@ -58,7 +55,6 @@ export const AppContextProvider = (props) => {
     })
   }
   const updateBoardTitle = async (boardid, boardname) => {
-    console.log('VV UPDATE BOARD TITLE:', boardid, boardname)
     const options = {
       method: 'PUT',
       headers: {
@@ -76,9 +72,9 @@ export const AppContextProvider = (props) => {
     }
   }
   // List OPerations
-  const getLists = async (selBoard) => {
+  const getLists = async (boardId) => {
     try {
-      const response = await window.fetch(`http://localhost:2809/trello/list/${selBoard}`)
+      const response = await window.fetch(`http://localhost:2809/trello/list/${boardId}`)
       const data = await response.json()
       dispatch({ type: 'GET_LISTS', payload: data })
     } catch (err) {
@@ -134,9 +130,7 @@ export const AppContextProvider = (props) => {
   }
   // cards
   const getListCards = async (selBoard, selListId) => {
-    // getLists(selBoard)
-    console.log('APP CONTET:', selListId)
-    if (!selListId) return null
+    if (!selListId || !selBoard) return null
     const url = `http://localhost:2809/trello/card/?boardId=${selBoard}&&listId=${selListId}`
     try {
       const response = await window.fetch(url)

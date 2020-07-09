@@ -1,7 +1,9 @@
 const pool = require('./database')
+
 const getBoards = async (req, res) => {
+  console.log('From Getboards query: ', req.params.userid)
   try {
-    const query = `SELECT * FROM board WHERE userid= ${req.params.id}  ORDER BY ID ASC`
+    const query = `SELECT * FROM board WHERE userid= ${req.params.userid}  ORDER BY ID ASC`
     const result = await pool.query(query)
     return res.status(200).json(result.rows)
   } catch (err) {

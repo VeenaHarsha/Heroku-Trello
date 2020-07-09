@@ -34,9 +34,7 @@ export default (state, action) => {
       return {
         ...state,
         selBoard: action.payload.selBoardId,
-        selBoardName: action.payload.selBoardName,
-        showBoards: !state.showBoards,
-        showLists: !state.showLists
+        selBoardName: action.payload.selBoardName
       }
     }
 
