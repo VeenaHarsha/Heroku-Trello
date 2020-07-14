@@ -74,7 +74,6 @@ function CardItem ({ card, list, selBoard, selList }) {
           {card.description}
         </p>
         <span
-          type='submit'
           onClick={() => dispatch({ type: 'HANDLE_EDIT_CARD' })}
         >
           <img className='card-edit-image' src={require('../../images/edit.png')} alt='Edit' />

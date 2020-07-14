@@ -538,7 +538,7 @@ li {
 .card-editor{
     top: 128px;
     left: 16px;
-    position: relative;
+    position: absolute;
   display: flex;
 }
 .edit-card-name {
@@ -553,7 +553,6 @@ li {
 .save-card-name{
   margin-left:27px;
   padding: 5px;
-  margin: 5px;
   width:50px;
   background:rgb(99, 240, 84);
   color:black;

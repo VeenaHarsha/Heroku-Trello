@@ -5,7 +5,7 @@ import { AuthContext } from '../context/auth/AuthContext'
 
 function Board () {
   const { user } = useContext(AuthContext)
-  const { boards, getBoards, addBoard, clickBoard } = useContext(AppContext)
+  const { boards, getBoards, addBoard } = useContext(AppContext)
   const [board, setBoard] = useState({
     boardname: '',
     userid: ''

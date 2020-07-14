@@ -11,7 +11,7 @@ function CardsList ({ list }) {
 
   useEffect(() => {
     getListCards(selBoard, selListId)
-  }, [selListId])
+  }, [selBoard])
 
   const submitAddCard = async (event) => {
     event.preventDefault()
@@ -27,19 +27,19 @@ function CardsList ({ list }) {
   return (
 
     <div className='card-container'>
-      {lists.map(({ cards }, i) => (
+      {lists.map(({ id, cards }, i) => id === selListId && (
         <div
           key={i}
           className='card-list'
         >
-          {cards.map((card, j) => card.listid === selListId
-            ? <CardItem
+          {cards.map((card, j) => card.listid === selListId &&
+            <CardItem
               key={j}
               card={card}
               list={list}
               selBoard={selBoard}
               selList={selListId}
-            /> : '')}
+            />)}
         </div>
       ))}
 

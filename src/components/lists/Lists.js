@@ -1,10 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react'
 import ListItem from './ListItem'
 import { AppContext } from '../context/app/AppContext'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Redirect } from 'react-router-dom'
+import { AuthContext } from '../context/auth/AuthContext'
 
 function Lists ({ match }) {
-  const { lists, selBoard, selBoardName, getLists, addList, updateListPosition, updateBoardTitle } = useContext(AppContext)
+  const {
+    lists, selBoard, selBoardName, getLists, addList,
+    updateListPosition, updateBoardTitle, resetState
+  } = useContext(AppContext)
+  const { isAuthenticated } = useContext(AuthContext)
   const [showListInput, setShowListInput] = useState(false)
   const [editBoardTitle, setEditBoardTitle] = useState(false)
   const [boardName, setBoardName] = useState(selBoardName)
@@ -19,7 +24,7 @@ function Lists ({ match }) {
 
   useEffect(() => {
     getLists(match.params.id)
-  }, [])
+  }, [match.params.id])
 
   const onChange = e => setList({ ...list, [e.target.name]: e.target.value })
 
@@ -62,69 +67,76 @@ function Lists ({ match }) {
     updateBoardTitle(selBoard, boardName)
     setEditBoardTitle(!editBoardTitle)
   }
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault()
     history.push('/board')
+    resetState()
   }
   return (
     <>
-      <div className='list-div-container'>
-        <button className='back-button' onClick={handleClick}>Goto Boards</button>
-        {editBoardTitle
-          ? <form onSubmit={updateBTitle}>
-            <input
-              type='text'
-              className='board-input'
-              onChange={(e) => setBoardName(e.target.value)}
-              value={boardName}
-            />
-          </form>
-          : <span
-            className='disp-board-name'
-            onClick={() => setEditBoardTitle(!editBoardTitle)}
-          >
-            {boardName}
-          </span>}
+      {!isAuthenticated
+        ? (<Redirect to='/' />)
+        : (
+          <div className='list-div-container'>
+            <button className='back-button' onClick={handleClick}>Goto Boards</button>
+            {editBoardTitle
+              ? <form onSubmit={updateBTitle}>
+                <input
+                  type='text'
+                  className='board-input'
+                  onChange={(e) => setBoardName(e.target.value)}
+                  value={boardName}
+                />
+              </form>
+              : <span
+                className='disp-board-name'
+                onClick={() => setEditBoardTitle(!editBoardTitle)}
+              >
+                {boardName}
+              </span>}
 
-        <div className='all-list-div'>
-          {lists.map((list, i) => (
-            <div
-              key={i}
-              className='drag-list'
-              onDragOver={handleDragover}
-              onDrop={(e) => handleDrop(e, list)}
-            >
-              <ListItem list={list} />
+            <div className='all-list-div'>
+              {lists && lists.map((list, i) => (
+                <div
+                  key={i}
+                  className='drag-list'
+                  onDragOver={handleDragover}
+                  onDrop={(e) => handleDrop(e, list)}
+                >
+                  <ListItem list={list} />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        {showListInput
-          ? <div>
-            <form className='list-form' onSubmit={submitList}>
-              <input
-                placeholder='Add list..'
-                type='text'
-                className='add-list-input'
-                onChange={onChange}
-                name='listname'
-                value={listname}
-              />
-              <button
-                type='button'
-                className='add-list-btn'
+            {showListInput
+              ? <div>
+                <form className='list-form' onSubmit={submitList}>
+                  <input
+                    placeholder='Add list..'
+                    type='text'
+                    className='add-list-input'
+                    onChange={onChange}
+                    name='listname'
+                    value={listname}
+                  />
+                  <button
+                    type='button'
+                    className='add-list-btn'
+                    onClick={handleAddList}
+                  >
+                Close
+                  </button>
+                </form>
+              </div>
+              : null}
+            {!showListInput
+              ? <div
+                className='add-list-div'
                 onClick={handleAddList}
               >
-              Close
-              </button>
-            </form>
-          </div> : null}
-        {!showListInput
-          ? <div
-            className='add-list-div'
-            onClick={handleAddList}
-          >
-          Add a list
-        </div> : null}
-      </div>
+                Add a list
+              </div> : null}
+          </div>
+        )}
     </>
   )
 }

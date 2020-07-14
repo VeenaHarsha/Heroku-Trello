@@ -24,7 +24,7 @@ export const AppContextProvider = (props) => {
     try {
       const response = await window.fetch(`http://localhost:2809/trello/board/${user.id}`, options)
       const data = await response.json()
-      dispatch({ type: 'GET_BOARD_LIST', payload: data })
+      data.length ? dispatch({ type: 'GET_BOARD_LIST', payload: data }) : dispatch({ type: 'ERROR', payload: data.msg })
     } catch (err) {
       dispatch({ type: 'ERROR', payload: err })
     }
@@ -54,6 +54,7 @@ export const AppContextProvider = (props) => {
       payload: selBoardInfo
     })
   }
+
   const updateBoardTitle = async (boardid, boardname) => {
     const options = {
       method: 'PUT',
@@ -72,11 +73,23 @@ export const AppContextProvider = (props) => {
     }
   }
   // List OPerations
+  const resetState = () => {
+    dispatch({
+      type: 'RESET_STATE'
+    })
+  }
   const getLists = async (boardId) => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'x-auth-token': window.localStorage.getItem('token')
+      }
+    }
     try {
-      const response = await window.fetch(`http://localhost:2809/trello/list/${boardId}`)
-      const data = await response.json()
-      dispatch({ type: 'GET_LISTS', payload: data })
+      const response = await window.fetch(`http://localhost:2809/trello/list/${boardId}`, options)
+      const listData = await response.json()
+      listData.length ? dispatch({ type: 'GET_LISTS', payload: listData }) : dispatch({ type: 'ERROR', payload: listData.msg })
     } catch (err) {
       dispatch({ type: 'ERROR', payload: err })
     }
@@ -85,7 +98,10 @@ export const AppContextProvider = (props) => {
   const addList = async (formData) => {
     const options = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'x-auth-token': window.localStorage.getItem('token')
+      },
       body: JSON.stringify(formData)
     }
     try {
@@ -99,7 +115,10 @@ export const AppContextProvider = (props) => {
   const updateListPosition = async (sourceObj, targetObj) => {
     const options = {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'x-auth-token': window.localStorage.getItem('token')
+      },
       body: JSON.stringify({
         position: sourceObj.position
       })
@@ -116,7 +135,10 @@ export const AppContextProvider = (props) => {
   const updateListTitle = async (listId, listname) => {
     const options = {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'x-auth-token': window.localStorage.getItem('token')
+      },
       body: JSON.stringify({ listname: listname })
     }
     try {
@@ -130,10 +152,16 @@ export const AppContextProvider = (props) => {
   }
   // cards
   const getListCards = async (selBoard, selListId) => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8'
+      }
+    }
     if (!selListId || !selBoard) return null
     const url = `http://localhost:2809/trello/card/?boardId=${selBoard}&&listId=${selListId}`
     try {
-      const response = await window.fetch(url)
+      const response = await window.fetch(url, options)
       const data = await response.json()
       dispatch({ type: 'GET_LIST_CARDS', payload: data })
     } catch (err) {
@@ -143,7 +171,9 @@ export const AppContextProvider = (props) => {
   const addCard = async (selBoard, selListId, cardDesc) => {
     const options = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8'
+      },
       body: JSON.stringify({
         boardid: selBoard,
         listid: selListId,
@@ -164,7 +194,9 @@ export const AppContextProvider = (props) => {
   const moveCardInSameList = async (sourceObj, targetObj, selBoard, selList) => {
     const options = {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8'
+      },
       body: JSON.stringify({
         position: sourceObj.position
       })
@@ -182,7 +214,9 @@ export const AppContextProvider = (props) => {
   const moveCardInDiffList = async (sourceObj, targetObj) => {
     const options = {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8'
+      },
       body: JSON.stringify({
         position: sourceObj.position
       })
@@ -198,7 +232,12 @@ export const AppContextProvider = (props) => {
     }
   }
   const handleDeleteCard = async (card) => {
-    const options = { method: 'DELETE' }
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8'
+      }
+    }
     try {
       const respone = await window.fetch(`http://localhost:2809/trello/card/delete/${card.id}`, options)
       await respone.json()
@@ -212,7 +251,9 @@ export const AppContextProvider = (props) => {
     const cardId = card.id
     const options = {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8'
+      },
       body: JSON.stringify({ description: description })
     }
     try {
@@ -258,7 +299,8 @@ export const AppContextProvider = (props) => {
       handleDeleteCard: handleDeleteCard,
       handleCardUpdate: handleCardUpdate,
       handleCopyCard: handleCopyCard,
-      handleMoveCard: handleMoveCard
+      handleMoveCard: handleMoveCard,
+      resetState: resetState
     }}
     >
       {props.children}

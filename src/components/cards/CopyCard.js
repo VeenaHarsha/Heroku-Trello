@@ -15,8 +15,15 @@ function CopyCard ({ card, list }) {
   }, [boardSelect, listSelect])
 
   const getListOfSelBoard = async (boardSelect) => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+        'x-auth-token': window.localStorage.getItem('token')
+      }
+    }
     try {
-      const response = await window.fetch(`http://localhost:2809/trello/list/${boardSelect}`)
+      const response = await window.fetch(`http://localhost:2809/trello/list/${boardSelect}`, options)
       const data = await response.json()
       setFiltLists(data)
     } catch (err) {

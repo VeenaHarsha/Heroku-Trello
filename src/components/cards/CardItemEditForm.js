@@ -17,7 +17,9 @@ function CardItemEditForm ({ card, list }) {
   const handleDelete = (e, card) => {
     e.preventDefault()
     handleDeleteCard(card)
+    dispatch({ type: 'HANDLE_CLOSE_OVERLAY' })
   }
+
   const handleUpdateCard = (e, card) => {
     e.preventDefault()
     handleCardUpdate(card, description)
@@ -33,7 +35,7 @@ function CardItemEditForm ({ card, list }) {
             CLOSE
         </div>
         <div className='card-editor'>
-          <form className='card-edit-div'>
+          <div className='card-edit-div'>
             <div>
               <textarea
                 className='edit-card-name'
@@ -48,9 +50,9 @@ function CardItemEditForm ({ card, list }) {
             >
                 Save
             </button>
-          </form>
+          </div>
           <div className='card-ops-div'>
-            <form className='card-ops-a-tag'>
+            <div className='card-ops-a-tag'>
               <img className='card-image' src={require('../../images/copy.png')} alt='Copy' />
               <p
                 className='card-label'
@@ -58,8 +60,8 @@ function CardItemEditForm ({ card, list }) {
               >
                       Copy
               </p>
-            </form>
-            <form className='card-ops-a-tag'>
+            </div>
+            <div className='card-ops-a-tag'>
               <img className='card-image' src={require('../../images/move.png')} alt='Move' />
               <p
                 className='card-label'
@@ -67,12 +69,12 @@ function CardItemEditForm ({ card, list }) {
               >
                     Move
               </p>
-            </form>
-            <form className='card-ops-a-tag'>
+            </div>
+            <div className='card-ops-a-tag'>
               <img className='card-image' src={require('../../images/clock.png')} alt='Move' />
               <p className='card-label'>Change Due Date</p>
-            </form>
-            <form className='card-ops-a-tag'>
+            </div>
+            <div className='card-ops-a-tag'>
               <img className='card-image' src={require('../../images/delete-52.png')} alt='Delete' />
               <p
                 className='card-label'
@@ -80,7 +82,7 @@ function CardItemEditForm ({ card, list }) {
               >
                     Delete
               </p>
-            </form>
+            </div>
           </div>
         </div>
       </div>

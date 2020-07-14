@@ -34,6 +34,7 @@ export const cardReducer = (state, action) => {
     case HANDLE_CREATE_CARD_FORM: {
       const isOverlay = state.showOverlay ? !state.showOverlay : state.showOverlay
       const isCardEdit = state.showCardEdit ? !state.showCardEdit : state.showCardEdit
+      
       console.log('Checking:', state.showCardEdit, state.showOverlay)
       return {
         ...state,
