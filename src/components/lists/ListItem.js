@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react'
 import CardsList from '../cards/CardsList'
 import { AppContext } from '../context/app/AppContext'
-import deleteImage from '../../../images/delete_26.png'
 
 function ListItem ({ list }) {
   const { updateListTitle } = useContext(AppContext)
@@ -50,7 +49,7 @@ function ListItem ({ list }) {
       onDragOver={(e) => handleDragOver(e)}
       onDragLeave={(e) => handleDragLeave(e)}
     >
-      <img className='list-del-image' src={deleteImage} alt='Delete' />
+      <img className='list-del-image' src='/images/delete_26.png' alt='Delete' />
       {editListTitle
         ? <form onSubmit={updateTitle}>
           <input

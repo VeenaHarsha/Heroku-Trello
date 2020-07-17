@@ -2,7 +2,6 @@ import React, { useReducer, useContext } from 'react'
 import { initialState, cardReducer } from './CardReducer'
 import CardItemEditForm from './CardItemEditForm'
 import { AppContext } from '../context/app/AppContext'
-import editImage from '../../../images/edit.png'
 
 function CardItem ({ card, list, selBoard, selList }) {
   const [state, dispatch] = useReducer(cardReducer, initialState)
@@ -78,7 +77,7 @@ function CardItem ({ card, list, selBoard, selList }) {
         <span
           onClick={() => dispatch({ type: 'HANDLE_EDIT_CARD' })}
         >
-          <img className='card-edit-image' src={editImage} alt='Edit' />
+          <img className='card-edit-image' src='/images/edit.png' alt='Edit' />
         </span>
       </div>
       {showCardEdit &&

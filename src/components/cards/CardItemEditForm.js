@@ -3,9 +3,6 @@ import { initialState, cardReducer } from './CardReducer'
 import { AppContext } from '../context/app/AppContext'
 import CopyCard from './CopyCard'
 import MoveCard from './MoveCard'
-import deleteImage from '../../../images/delete_26.png'
-import copyImage from '../../../images/copy.png'
-import moveImage from '../../../images/move.png'
 
 function CardItemEditForm ({ card, list }) {
   const { handleDeleteCard, handleCardUpdate } = useContext(AppContext)
@@ -55,7 +52,7 @@ function CardItemEditForm ({ card, list }) {
           </div>
           <div className='card-ops-div'>
             <div className='card-ops-a-tag'>
-              <img className='card-image' src={copyImage} alt='Copy' />
+              <img className='card-image' src='/images/copy.png' alt='Copy' />
               <p
                 className='card-label'
                 onClick={() => dispatch({ type: 'HANDLE_COPY_CARD_FORM' })}
@@ -64,7 +61,7 @@ function CardItemEditForm ({ card, list }) {
               </p>
             </div>
             <div className='card-ops-a-tag'>
-              <img className='card-image' src={moveImage} alt='Move' />
+              <img className='card-image' src='/images/move.png' alt='Move' />
               <p
                 className='card-label'
                 onClick={() => dispatch({ type: 'HANDLE_MOVE_CARD_FORM' })}
@@ -73,11 +70,11 @@ function CardItemEditForm ({ card, list }) {
               </p>
             </div>
             <div className='card-ops-a-tag'>
-              <img className='card-image' src={require('../../images/clock.png')} alt='Move' />
+              <img className='card-image' src='/images/clock.png' alt='Move' />
               <p className='card-label'>Change Due Date</p>
             </div>
             <div className='card-ops-a-tag'>
-              <img className='card-image' src={deleteImage} alt='Delete' />
+              <img className='card-image' src='/images/delete_26.png' alt='Delete' />
               <p
                 className='card-label'
                 onClick={(e) => { handleDelete(e, card) }}
