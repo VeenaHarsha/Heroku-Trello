@@ -21,7 +21,7 @@ export const AuthContextProvider = (props) => {
       }
     }
     try {
-      const response = await window.fetch('http://localhost:3000/trello/auth/user', options)
+      const response = await window.fetch('http://trello-clone-wip.herokuapp.com/trello/auth/user', options)
 
       const data = await response.json()
       dispatch({
@@ -43,7 +43,7 @@ export const AuthContextProvider = (props) => {
     }
     console.log('FORM DATA:', formData)
     try {
-      const response = await window.fetch('http://localhost:3000/trello/users/register/', options)
+      const response = await window.fetch('http://trello-clone-wip.herokuapp.com/trello/users/register/', options)
       const data = await response.json()
       if (data.token) {
         dispatch({
@@ -69,7 +69,7 @@ export const AuthContextProvider = (props) => {
       body: JSON.stringify(formData)
     }
     try {
-      const response = await window.fetch('http://localhost:3000/trello/auth/', options)
+      const response = await window.fetch('http://trello-clone-wip.herokuapp.com/trello/auth/', options)
       const data = await response.json()
       if (data.token) {
         dispatch({ type: 'LOGIN', payload: data })
