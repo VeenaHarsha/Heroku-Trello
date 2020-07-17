@@ -2,7 +2,6 @@
 
 # dependencies
 .env
-database.js
 /node_modules
 /.pnp
 .pnp.js
