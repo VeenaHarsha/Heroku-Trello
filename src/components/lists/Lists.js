@@ -106,6 +106,13 @@ function Lists ({ match }) {
                   <ListItem list={list} />
                 </div>
               ))}
+              {!showListInput
+                ? <div
+                  className='add-list-div'
+                  onClick={handleAddList}
+                >
+                Add a list
+                </div> : null}
             </div>
             {showListInput
               ? <div>
@@ -128,13 +135,7 @@ function Lists ({ match }) {
                 </form>
               </div>
               : null}
-            {!showListInput
-              ? <div
-                className='add-list-div'
-                onClick={handleAddList}
-              >
-                Add a list
-              </div> : null}
+            
           </div>
         )}
     </>
