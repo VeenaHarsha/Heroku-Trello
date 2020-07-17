@@ -15,6 +15,7 @@ function Board () {
   const [showAddBoard, setShowAddBoard] = useState(false)
 
   useEffect(() => {
+    console.log('From board useEffect:', user)
     getBoards(user)
   }, [])
 
