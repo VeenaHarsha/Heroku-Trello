@@ -42,9 +42,9 @@ function CardsList ({ list }) {
             />)}
         </div>
       ))} */}
-      {list.cards.map((card, j) =>
+      {list.cards.map(card =>
         <CardItem
-          key={j}
+          key={card.id}
           card={card}
           list={list}
           selBoard={selBoard}

@@ -33,6 +33,7 @@ function CardItem ({ card, list, selBoard, selList }) {
   }
   const moveCardSameList = (event, sourceObj, targetObj) => {
     event.preventDefault()
+    console.log('Hey Details r:', sourceObj, targetObj, selBoard, selList)
     moveCardInSameList(sourceObj, targetObj, selBoard, selList)
   }
   const moveCardAcrossList = (event, sourceObj, targetObj) => {
