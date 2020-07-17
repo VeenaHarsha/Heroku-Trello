@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer, useContext } from 'react'
 import { initialState, cardReducer } from './CardReducer'
 import { AppContext } from '../context/app/AppContext'
+import deleteImage from '../../images/delete_26.png'
 
 function MoveCard ({ card, list }) {
   const [state, dispatch] = useReducer(cardReducer, initialState)
@@ -50,7 +51,7 @@ function MoveCard ({ card, list }) {
             className='copy-card-close-overlay'
             onClick={() => dispatch({ type: 'HANDLE_MOVE_CARD_FORM_CLOSE' })}
           >
-            <img className='card-del-image' src={require('../../images/delete-60.png')} alt='Delete' />
+            <img className='card-del-image' src={deleteImage} alt='Delete' />
           </span>
         </div>
         <form className='copy-op-form' onSubmit={(e) => { handleMoveCardForm(e, card, boardSelect, listSelect) }}>
