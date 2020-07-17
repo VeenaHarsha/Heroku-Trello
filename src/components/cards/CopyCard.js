@@ -23,7 +23,7 @@ function CopyCard ({ card, list }) {
       }
     }
     try {
-      const response = await window.fetch(`http://trello-clone-wip.herokuapp.com/trello/list/${boardSelect}`, options)
+      const response = await window.fetch(`https://trello-clone-wip.herokuapp.com/trello/list/${boardSelect}`, options)
       const data = await response.json()
       setFiltLists(data)
     } catch (err) {
