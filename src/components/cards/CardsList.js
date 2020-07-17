@@ -10,6 +10,7 @@ function CardsList ({ list }) {
   const selListId = list.id
 
   useEffect(() => {
+    console.log('selected list is:', list, selListId)
     getListCards(selBoard, selListId)
   }, [selBoard])
 
