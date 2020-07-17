@@ -14,7 +14,7 @@ app.use('/trello/list', require('./routes/list'))
 app.use('/trello/card', require('./routes/card'))
 app.use(express.static(path.join(__dirname, '../build')))
 
-app.get('/*', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build', '../public/index.html'))
 })
 
