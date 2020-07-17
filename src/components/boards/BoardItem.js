@@ -12,7 +12,6 @@ function BoardItem ({ board }) {
         onClick={() => clickBoard({ selBoardId: board.id, selBoardName: board.boardname })}
       >
         <img className='list-del-image' src={require('../../images/delete_26.png')} alt='Delete' />
-
         <p>{board.boardname}</p>
       </div>
     </Link>
