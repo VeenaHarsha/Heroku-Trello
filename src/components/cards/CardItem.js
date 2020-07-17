@@ -2,7 +2,7 @@ import React, { useReducer, useContext } from 'react'
 import { initialState, cardReducer } from './CardReducer'
 import CardItemEditForm from './CardItemEditForm'
 import { AppContext } from '../context/app/AppContext'
-import editImage from '../../images/edit.png'
+import editImage from '../../../images/edit.png'
 
 function CardItem ({ card, list, selBoard, selList }) {
   const [state, dispatch] = useReducer(cardReducer, initialState)

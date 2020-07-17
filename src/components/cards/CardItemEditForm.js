@@ -3,9 +3,9 @@ import { initialState, cardReducer } from './CardReducer'
 import { AppContext } from '../context/app/AppContext'
 import CopyCard from './CopyCard'
 import MoveCard from './MoveCard'
-import deleteImage from '../../images/delete_26.png'
-import copyImage from '../../images/copy.png'
-import moveImage from '../../images/move.png'
+import deleteImage from '../../../images/delete_26.png'
+import copyImage from '../../../images/copy.png'
+import moveImage from '../../../images/move.png'
 
 function CardItemEditForm ({ card, list }) {
   const { handleDeleteCard, handleCardUpdate } = useContext(AppContext)

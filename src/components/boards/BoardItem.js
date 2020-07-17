@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AppContext } from '../context/app/AppContext'
-import deleteImage from '../../images/delete_26.png'
+import deleteImage from '../../../public/images/delete_26.png'
 
 function BoardItem ({ board }) {
   const { clickBoard } = useContext(AppContext)

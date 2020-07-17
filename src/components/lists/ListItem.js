@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import CardsList from '../cards/CardsList'
 import { AppContext } from '../context/app/AppContext'
-import deleteImage from '../../images/delete_26.png'
+import deleteImage from '../../../images/delete_26.png'
 
 function ListItem ({ list }) {
   const { updateListTitle } = useContext(AppContext)

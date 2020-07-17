@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useReducer, useContext } from 'react'
 import { initialState, cardReducer } from './CardReducer'
 import { AppContext } from '../context/app/AppContext'
-import deleteImage from '../../images/delete_26.png'
-
+import deleteImage from '../../../images/delete_26.png'
 
 function CopyCard ({ card, list }) {
   const [state, dispatch] = useReducer(cardReducer, initialState)
