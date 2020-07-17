@@ -83,6 +83,7 @@ export default (state, action) => {
       }
     }
     case ADD_CARD: {
+      console.log('VbVB:', action.payload)
       const newLists = (state.lists.map(
         list => {
           return list.id === action.payload[0].listid

@@ -22,7 +22,7 @@ export const AppContextProvider = (props) => {
       }
     }
     try {
-      const response = await window.fetch(`http://localhost:2809/trello/board/${user.id}`, options)
+      const response = await window.fetch(`http://localhost:3000/trello/board/${user.id}`, options)
       const data = await response.json()
       data.length ? dispatch({ type: 'GET_BOARD_LIST', payload: data }) : dispatch({ type: 'ERROR', payload: data.msg })
     } catch (err) {
@@ -40,7 +40,7 @@ export const AppContextProvider = (props) => {
       body: JSON.stringify(formData)
     }
     try {
-      const response = await window.fetch('http://localhost:2809/trello/board/add/', options)
+      const response = await window.fetch('http://localhost:3000/trello/board/add/', options)
       const data = await response.json()
       dispatch({ type: 'ADD_BOARD', payload: data.result })
     } catch (err) {
@@ -65,7 +65,7 @@ export const AppContextProvider = (props) => {
       body: JSON.stringify({ boardname })
     }
     try {
-      const response = await window.fetch(`http://localhost:2809/trello/board/updateBoardTitle/${boardid}`, options)
+      const response = await window.fetch(`http://localhost:3000/trello/board/updateBoardTitle/${boardid}`, options)
       const data = await response.json()
       dispatch({ type: 'UPDATE_BOARD_TITLE', payload: data })
     } catch (err) {
@@ -87,7 +87,7 @@ export const AppContextProvider = (props) => {
       }
     }
     try {
-      const response = await window.fetch(`http://localhost:2809/trello/list/${boardId}`, options)
+      const response = await window.fetch(`http://localhost:3000/trello/list/${boardId}`, options)
       const listData = await response.json()
       listData.length ? dispatch({ type: 'GET_LISTS', payload: listData }) : dispatch({ type: 'ERROR', payload: listData.msg })
     } catch (err) {
@@ -105,7 +105,7 @@ export const AppContextProvider = (props) => {
       body: JSON.stringify(formData)
     }
     try {
-      const response = await window.fetch('http://localhost:2809/trello/list/add', options)
+      const response = await window.fetch('http://localhost:3000/trello/list/add', options)
       const data = await response.json()
       dispatch({ type: 'ADD_LIST', payload: data.result })
     } catch (err) {
@@ -124,7 +124,7 @@ export const AppContextProvider = (props) => {
       })
     }
     try {
-      const url = `http://localhost:2809/trello/list/updateListPosition/?listId=${sourceObj.id}&&boardId=${targetObj.boardid}`
+      const url = `http://localhost:3000/trello/list/updateListPosition/?listId=${sourceObj.id}&&boardId=${targetObj.boardid}`
       const response = await window.fetch(url, options)
       const data = await response.json()
       dispatch({ type: 'UPDATE_LIST_POSITION', payload: data })
@@ -142,7 +142,7 @@ export const AppContextProvider = (props) => {
       body: JSON.stringify({ listname: listname })
     }
     try {
-      const url = `http://localhost:2809/trello/list/updateListTitle/${listId}`
+      const url = `http://localhost:3000/trello/list/updateListTitle/${listId}`
       const response = await window.fetch(url, options)
       const data = await response.json()
       dispatch({ type: 'UPDATE_LIST_TITLE', payload: data })
@@ -159,7 +159,7 @@ export const AppContextProvider = (props) => {
       }
     }
     if (!selListId || !selBoard) return null
-    const url = `http://localhost:2809/trello/card/?boardId=${selBoard}&&listId=${selListId}`
+    const url = `http://localhost:3000/trello/card/?boardId=${selBoard}&&listId=${selListId}`
     try {
       const response = await window.fetch(url, options)
       const data = await response.json()
@@ -182,7 +182,7 @@ export const AppContextProvider = (props) => {
       })
     }
     try {
-      const response = await window.fetch('http://localhost:2809/trello/card/add', options)
+      const response = await window.fetch('http://localhost:3000/trello/card/add', options)
       const data = await response.json()
       dispatch({ type: 'ADD_CARD', payload: data })
     } catch (err) {
@@ -202,7 +202,7 @@ export const AppContextProvider = (props) => {
       })
     }
     try {
-      const url = `http://localhost:2809/trello/card/updatePosition/?cardId=${sourceObj.id}&&listId=${targetObj.listid}`
+      const url = `http://localhost:3000/trello/card/updatePosition/?cardId=${sourceObj.id}&&listId=${targetObj.listid}`
       const response = await window.fetch(url, options)
       const data = await response.json()
       dispatch({ type: 'UPDATE_CARD_POSITION', payload: data })
@@ -222,7 +222,7 @@ export const AppContextProvider = (props) => {
       })
     }
     try {
-      const url = `http://localhost:2809/trello/card/updateListId/?cardId=${sourceObj.id}&&listId=${targetObj.listid}`
+      const url = `http://localhost:3000/trello/card/updateListId/?cardId=${sourceObj.id}&&listId=${targetObj.listid}`
       const response = await window.fetch(url, options)
       const data = await response.json()
       dispatch({ type: 'UPDATE_LISTID', payload: data })
@@ -239,7 +239,7 @@ export const AppContextProvider = (props) => {
       }
     }
     try {
-      const respone = await window.fetch(`http://localhost:2809/trello/card/delete/${card.id}`, options)
+      const respone = await window.fetch(`http://localhost:3000/trello/card/delete/${card.id}`, options)
       await respone.json()
       dispatch({ type: 'DELETE_CARD', payload: card })
     } catch (err) {
@@ -257,7 +257,7 @@ export const AppContextProvider = (props) => {
       body: JSON.stringify({ description: description })
     }
     try {
-      const response = await window.fetch(`http://localhost:2809/trello/card/updateCardTitle/${cardId}`, options)
+      const response = await window.fetch(`http://localhost:3000/trello/card/updateCardTitle/${cardId}`, options)
       const data = await response.json()
       dispatch({ type: 'UPDATE_CARD_TITLE', payload: data })
     } catch (err) {
