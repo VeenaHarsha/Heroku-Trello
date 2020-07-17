@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../context/auth/AuthContext'
 import { AppContext } from '../context/app/AppContext'
 
-const NavLinks = () => {
+function NavLinks () {
   const { isAuthenticated, user, logout } = useContext(AuthContext)
   const { resetState } = useContext(AppContext)
 

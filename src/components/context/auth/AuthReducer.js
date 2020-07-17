@@ -1,7 +1,6 @@
 export default (state, action) => {
   switch (action.type) {
     case 'LOAD_USER':
-      console.log('From Loaded:', action.payload)
       return {
         ...state,
         isAuthenticated: true,

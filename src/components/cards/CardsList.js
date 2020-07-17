@@ -25,9 +25,8 @@ function CardsList ({ list }) {
   }
 
   return (
-
     <div className='card-container'>
-      {lists.map(({ id, cards }, i) => id === selListId && (
+      {/* {lists.map(({ id, cards }, i) => id === selListId && (
         <div
           key={i}
           className='card-list'
@@ -41,7 +40,15 @@ function CardsList ({ list }) {
               selList={selListId}
             />)}
         </div>
-      ))}
+      ))} */}
+      {list.cards.map((card, j) =>
+        <CardItem
+          key={j}
+          card={card}
+          list={list}
+          selBoard={selBoard}
+          selList={selListId}
+        />)}
 
       {!showCardInput
         ? <div className='add-card-div'>
@@ -56,7 +63,7 @@ function CardsList ({ list }) {
       {showCardInput
         ? <form className='card-form' onSubmit={submitAddCard}>
           <textarea
-            type='text'
+            wrap='hard'
             className='card-text-input'
             placeholder='Enter title for this card..'
             value={cardDesc}

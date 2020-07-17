@@ -1,16 +1,18 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { AuthContext } from '../context/auth/AuthContext'
 import { Link, Redirect } from 'react-router-dom'
 
-function Login (props) {
-  const { login, error, isAuthenticated } = useContext(AuthContext)
+function Login () {
+  const { token, login, error, isAuthenticated } = useContext(AuthContext)
 
   const [isLogin, setIsLogin] = useState(false)
   const [user, setUser] = useState({
     email: '',
     password: ''
   })
-
+  useEffect(() => {
+    token && setIsLogin(true)
+  }, [])
   const { email, password } = user
 
   const onChange = e => setUser({ ...user, [e.target.name]: e.target.value })

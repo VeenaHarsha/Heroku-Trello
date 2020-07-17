@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { AuthContext } from '../context/auth/AuthContext'
 import { Link } from 'react-router-dom'
 
-const Register = props => {
+function Register () {
   const { error, register } = useContext(AuthContext)
 
   const [user, setUser] = useState({

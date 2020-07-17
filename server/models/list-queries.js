@@ -6,6 +6,7 @@ const getLists = async (req, res) => {
     const query =
     `SELECT * FROM lists WHERE boardid = ${boardId} ORDER BY position`
     const result = await pool.query(query)
+    console.log('VISHAL: ', result)
     const lists = []
     result.rows.forEach(row => {
       row.cards = []

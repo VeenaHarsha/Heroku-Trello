@@ -381,6 +381,7 @@ body{
 .card-desc{
   flex-grow: 4;
   text-align: left;
+  overflow: hidden;
 }
 .card-edit-image{
   width:15px;
@@ -754,4 +755,9 @@ li {
 .links-one, .links-two a{
   color:yellow;
 
+}
+.list-del-image {
+  width:10px;
+  float: right;
+  display: none;
 }

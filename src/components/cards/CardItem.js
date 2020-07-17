@@ -73,6 +73,7 @@ function CardItem ({ card, list, selBoard, selList }) {
         <p className='card-desc'>
           {card.description}
         </p>
+
         <span
           onClick={() => dispatch({ type: 'HANDLE_EDIT_CARD' })}
         >

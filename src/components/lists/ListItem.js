@@ -49,6 +49,7 @@ function ListItem ({ list }) {
       onDragOver={(e) => handleDragOver(e)}
       onDragLeave={(e) => handleDragLeave(e)}
     >
+      <img className='list-del-image' src={require('../../images/delete_26.png')} alt='Delete' />
       {editListTitle
         ? <form onSubmit={updateTitle}>
           <input
@@ -67,7 +68,6 @@ function ListItem ({ list }) {
       <div>
         <CardsList list={list} />
       </div>
-
     </div>
   )
 }
