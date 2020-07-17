@@ -87,13 +87,13 @@ function Lists ({ match }) {
                   onChange={(e) => setBoardName(e.target.value)}
                   value={boardName}
                 />
-              </form>
+                </form>
               : <span
                 className='disp-board-name'
                 onClick={() => setEditBoardTitle(!editBoardTitle)}
               >
                 {boardName}
-              </span>}
+                </span>}
 
             <div className='all-list-div'>
               {lists && lists.map((list, i) => (
@@ -111,31 +111,31 @@ function Lists ({ match }) {
                   className='add-list-div'
                   onClick={handleAddList}
                 >
-                Add a list
+                    Add a list
                 </div> : null}
-            </div>
-            {showListInput
-              ? <div>
-                <form className='list-form' onSubmit={submitList}>
-                  <input
-                    placeholder='Add list..'
-                    type='text'
-                    className='add-list-input'
-                    onChange={onChange}
-                    name='listname'
-                    value={listname}
-                  />
-                  <button
-                    type='button'
-                    className='add-list-btn'
-                    onClick={handleAddList}
-                  >
+
+              {showListInput
+                ? <div>
+                  <form className='list-form' onSubmit={submitList}>
+                    <input
+                      placeholder='Add list..'
+                      type='text'
+                      className='add-list-input'
+                      onChange={onChange}
+                      name='listname'
+                      value={listname}
+                    />
+                    <button
+                      type='button'
+                      className='add-list-btn'
+                      onClick={handleAddList}
+                    >
                 Close
-                  </button>
-                </form>
-              </div>
-              : null}
-            
+                    </button>
+                  </form>
+                  </div>
+                : null}
+            </div>
           </div>
         )}
     </>
