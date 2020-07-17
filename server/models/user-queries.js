@@ -1,8 +1,7 @@
 const pool = require('./database')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const dotenv = require('dotenv')
-dotenv.config()
+require('dotenv').config()
 
 const registerUser = async (req, res) => {
   const { username, email, password } = req.body
