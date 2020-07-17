@@ -8,6 +8,7 @@ const registerUser = async (req, res) => {
   const { username, email, password } = req.body
   try {
     const checkEmail = await pool.query(`SELECT id FROM users WHERE email = '${email}'`)
+    console.log('checking: ', checkEmail)
     if (checkEmail.rowCount > 0) {
       return res.status(400).json({ message: 'Email already exists.' })
     }
