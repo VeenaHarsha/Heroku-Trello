@@ -28,7 +28,7 @@ const registerUser = async (req, res) => {
     // resp.token = jwt.sign({ user: user.rows[0].id }, '' + process.env.SECRET, {
     //   expiresIn: '3600'
     // })
-    return res.status(201).json({ success: 'User Added.' })
+    return res.status(201).json(user)
   } catch (err) {
     return res.status(400).json({ message: err.message })
   }
