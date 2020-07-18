@@ -46,28 +46,20 @@ export const AuthContextProvider = (props) => {
     try {
       const response = await window.fetch('https://trello-clone-wip.herokuapp.com/trello/users/register/', options)
       const data = await response.json()
-      dispatch({
-        type: 'REGISTER_SUCCESS',
-        payload: data
-      })
-      loadUser()
-      // if (data.success) {
-      //   dispatch({
-      //     type: 'REGISTER',
-      //     payload: data
-      //   })
-      //   loadUser()
-      // } else {
-      //   dispatch({
-      //     type: 'ERROR',
-      //     payload: data
-      //   })
-      // }
+      if (data.success) {
+        dispatch({
+          type: 'REGISTER',
+          payload: data
+        })
+        // loadUser()
+      } else {
+        dispatch({
+          type: 'ERROR',
+          payload: data
+        })
+      }
     } catch (err) {
-      dispatch({
-        type: 'ERROR',
-        payload: err.response.data.message
-      })
+      console.log('ERROR', err)
     }
   }
 
