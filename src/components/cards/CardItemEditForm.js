@@ -52,7 +52,7 @@ function CardItemEditForm ({ card, list }) {
           </div>
           <div className='card-ops-div'>
             <div className='card-ops-a-tag'>
-              <img className='card-image' src='public/images/copy.png' alt='Copy' />
+              <img className='card-image' src='../../../public/images/copy.png' alt='Copy' />
               <p
                 className='card-label'
                 onClick={() => dispatch({ type: 'HANDLE_COPY_CARD_FORM' })}
@@ -61,7 +61,7 @@ function CardItemEditForm ({ card, list }) {
               </p>
             </div>
             <div className='card-ops-a-tag'>
-              <img className='card-image' src='public/images/move.png' alt='Move' />
+              <img className='card-image' src='../../../public/images/move.png' alt='Move' />
               <p
                 className='card-label'
                 onClick={() => dispatch({ type: 'HANDLE_MOVE_CARD_FORM' })}
@@ -70,11 +70,11 @@ function CardItemEditForm ({ card, list }) {
               </p>
             </div>
             <div className='card-ops-a-tag'>
-              <img className='card-image' src='public/images/clock.png' alt='Move' />
+              <img className='card-image' src='../../../public/images/clock.png' alt='Move' />
               <p className='card-label'>Change Due Date</p>
             </div>
             <div className='card-ops-a-tag'>
-              <img className='card-image' src='public/images/delete_26.png' alt='Delete' />
+              <img className='card-image' src='../../../public/images/delete_26.png' alt='Delete' />
               <p
                 className='card-label'
                 onClick={(e) => { handleDelete(e, card) }}

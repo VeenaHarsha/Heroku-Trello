@@ -54,7 +54,7 @@ function CopyCard ({ card, list }) {
             className='copy-card-close-overlay'
             onClick={() => dispatch({ type: 'HANDLE_COPY_CARD_FORM_CLOSE' })}
           >
-            <img className='card-del-image' src='public/images/delete_26.png' alt='Delete' />
+            <img className='card-del-image' src='../../../public/images/delete_26.png' alt='Delete' />
           </span>
         </div>
         <form className='copy-op-form' onSubmit={(e) => handleCopyCardForm(e, addTextArea, boardSelect, listSelect)}>
