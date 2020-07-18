@@ -8,7 +8,6 @@
 utils
 apis.rest
 TrelloApp.js
-images
 PrivateRoute.js
 # testing
 /coverage
