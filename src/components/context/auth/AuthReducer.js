@@ -7,12 +7,13 @@ export default (state, action) => {
         user: action.payload
       }
 
-    case 'REGISTER':
+    case 'REGISTER_SUCCESS':
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
+        userAdded: true,
+        loading: false
       }
-
     case 'LOGIN':
       console.log('Login Success:', action.payload)
       window.localStorage.setItem('token', action.payload.token)

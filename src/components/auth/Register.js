@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react'
 import { AuthContext } from '../context/auth/AuthContext'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 function Register () {
-  const { error, register } = useContext(AuthContext)
-
+  const { error, register, userAdded } = useContext(AuthContext)
+  const [isAdded, setIsAdded] = useState(false)
   const [user, setUser] = useState({
     username: '',
     email: '',
@@ -23,10 +23,18 @@ function Register () {
       email,
       password
     })
+    setIsAdded(true)
+    setUser({
+      username: '',
+      email: '',
+      password: '',
+      password2: ''
+    })
   }
 
-  return (
-    <div className='register-container'>
+  return (isAdded && userAdded)
+    ? (<Redirect to='/' />)
+    : (<div className='register-container'>
       <form className='user-reg-form' onSubmit={registerTrello}>
         {error && <h3 className='login-error'>{error.message}</h3>}
         <div className='form-group'>
@@ -81,8 +89,7 @@ function Register () {
       <p className='footer-text'>
           Already Registered. <Link to='/'>Login with Account Details</Link>
       </p>
-    </div>
-  )
+     </div>)
 }
 
 export default Register
