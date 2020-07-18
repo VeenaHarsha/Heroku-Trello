@@ -56,7 +56,7 @@ function Board () {
                 </form>
               </div>}
             <div className='main-board-div'>
-              {boards.length && boards.map((board, i) => (
+              {boards.map((board, i) => (
                 <BoardItem key={board.id} board={board} />
               ))}
               <div
