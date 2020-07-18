@@ -17,18 +17,18 @@ const registerUser = async (req, res) => {
       `INSERT INTO users (username, email, password, register_date)
        VALUES ('${username}', '${email}', '${hashPwd}', ${Date.now()}) RETURNING *`
     )
-    const resp = {
-      token: '',
-      user: {
-        id: user.rows[0].id,
-        username: username
-      }
-    }
+    // const resp = {
+    //   token: '',
+    //   user: {
+    //     id: user.rows[0].id,
+    //     username: username
+    //   }
+    // }
 
-    resp.token = jwt.sign({ user: user.rows[0].id }, '' + process.env.SECRET, {
-      expiresIn: '3600'
-    })
-    return res.status(200).json(resp)
+    // resp.token = jwt.sign({ user: user.rows[0].id }, '' + process.env.SECRET, {
+    //   expiresIn: '3600'
+    // })
+    return res.status(201).json({ success: 'User Added.' })
   } catch (err) {
     return res.status(400).json({ message: err.message })
   }

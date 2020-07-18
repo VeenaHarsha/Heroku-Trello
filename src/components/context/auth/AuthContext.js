@@ -45,7 +45,7 @@ export const AuthContextProvider = (props) => {
     try {
       const response = await window.fetch('https://trello-clone-wip.herokuapp.com/trello/users/register/', options)
       const data = await response.json()
-      if (data.token) {
+      if (data.success) {
         dispatch({
           type: 'REGISTER',
           payload: data
