@@ -78,7 +78,7 @@ function CardItem ({ card, list, selBoard, selList }) {
         <span
           onClick={() => dispatch({ type: 'HANDLE_EDIT_CARD' })}
         >
-          <img className='card-edit-image' src='/images/edit.png' alt='Edit' />
+          <img className='card-edit-image' src='public/images/edit.png' alt='Edit' />
         </span>
       </div>
       {showCardEdit &&
