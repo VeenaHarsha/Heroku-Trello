@@ -68,10 +68,10 @@ const updateCardTitle = async (req, res) => {
 }
 
 const updateDuedate = async (req, res) => {
-  const { cardId } = req.params
+  const { id } = req.params
   const { dueDate } = req.body
   try {
-    const query = ` UPDATE cards SET duedate = '${dueDate}' where id = ${cardId} RETURNING *`
+    const query = `UPDATE cards SET duedate = '${dueDate}' WHERE id = ${id} RETURNING *`
     const result = await pool.query(query)
     res.status(200).json(result.rows)
   } catch (err) {
