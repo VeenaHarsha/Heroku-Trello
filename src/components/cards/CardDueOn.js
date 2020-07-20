@@ -34,7 +34,8 @@ function CardDueOn ({ card }) {
           <input
             type='date'
             // value={dueDate}
-            defaultValue={new Date(card.duedate)}
+            defaultValue={new Date(card.duedate).toLocaleString()}
+            value={new Date(duedate).toLocaleString()}
             onChange={handleInputChange}
           />
           <button
