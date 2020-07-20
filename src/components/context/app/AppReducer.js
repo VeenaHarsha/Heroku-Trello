@@ -173,7 +173,7 @@ export default (state, action) => {
             cards: list.cards.map(
               card => {
                 return card.id === action.payload[0].id
-                  ? { ...card, description: action.payload[0].description }
+                  ? { ...card, duedate: action.payload[0].duedate }
                   : card
               }
             )
