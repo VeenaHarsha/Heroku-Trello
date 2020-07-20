@@ -164,28 +164,28 @@ export default (state, action) => {
         lists: newLists
       }
     }
-    
+
     case UPDATE_DUE_DATE : {
-        const newLists = (state.lists.map(list => {
-          return list.id === action.payload[0].listid
-            ? {
-              ...list,
-              cards: list.cards.map(
-                card => {
-                  return card.id === action.payload[0].id
-                    ? { ...card, description: action.payload[0].description }
-                    : card
-                }
-              )
-            }
-            : list
-        }))
-        return {
-          ...state,
-          lists: newLists
-        }
-      }      
+      const newLists = (state.lists.map(list => {
+        return list.id === action.payload[0].listid
+          ? {
+            ...list,
+            cards: list.cards.map(
+              card => {
+                return card.id === action.payload[0].id
+                  ? { ...card, description: action.payload[0].description }
+                  : card
+              }
+            )
+          }
+          : list
+      }))
+      return {
+        ...state,
+        lists: newLists
+      }
     }
+
     case 'RESET_STATE' : {
       return {
         ...state,
