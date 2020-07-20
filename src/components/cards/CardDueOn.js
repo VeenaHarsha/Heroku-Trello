@@ -5,7 +5,7 @@ import { AppContext } from '../context/app/AppContext'
 function CardDueOn ({ card }) {
   const [state, dispatch] = useReducer(cardReducer, initialState)
   const { handleDueDate } = useContext(AppContext)
-  const [duedate, setDuedate] = useState(card.duedate)
+  const [duedate, setDuedate] = useState(new Date(card.duedate))
 
   const handleInputChange = (event) => {
     setDuedate(event.target.value)
