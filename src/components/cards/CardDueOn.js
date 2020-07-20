@@ -34,8 +34,8 @@ function CardDueOn ({ card }) {
           <input
             type='date'
             // value={dueDate}
-            defaultValue={new Date(duedate).toLocaleString()}
-            // value={new Date(duedate).toLocaleString()}
+            defaultValue={new Date(card.duedate)}
+            // value={duedate}
             onChange={handleInputChange}
           />
           <button
@@ -43,7 +43,7 @@ function CardDueOn ({ card }) {
             className='btn-update-card-details'
             onClick={() => dispatch({ type: 'HANDLE_DUEDATE_FORM' })}
           >
-            Save- A-{new Date(duedate).toLocaleString()}
+            Save- {Date.now()}-{new Date(duedate).toLocaleString()}
           </button>
         </form>
       </div>

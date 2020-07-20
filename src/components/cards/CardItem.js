@@ -73,7 +73,7 @@ function CardItem ({ card, list, selBoard, selList }) {
       >
         <p className='card-desc'>
           {card.description}
-          {card.duedate === Date.now() && <p><small>Due on: {card.duedate}</small></p>}
+          {card.duedate === Date.now() && <p><small>Due on: {new Date(card.duedate).toLocaleString()}</small></p>}
         </p>
 
         <span
