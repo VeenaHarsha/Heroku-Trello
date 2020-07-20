@@ -2,10 +2,10 @@ import React, { useReducer, useContext, useState } from 'react'
 import { initialState, cardReducer } from './CardReducer'
 import { AppContext } from '../context/app/AppContext'
 
-function CardDueOn ({ card, list }) {
+function CardDueOn ({ card }) {
   const [state, dispatch] = useReducer(cardReducer, initialState)
   const { handleDueDate } = useContext(AppContext)
-  const [dueDate, setDuedate] = useState('')
+  const [dueDate, setDuedate] = useState(card.duedate)
 
   const handleInputChange = (event) => {
     setDuedate(event.target.value)
@@ -28,7 +28,7 @@ function CardDueOn ({ card, list }) {
             <img className='card-del-image' src='/images/delete_26.png' alt='Close' />
           </span>
         </div>
-        
+
         <form className='copy-op-form' onSubmit={handleSubmit}>
           <label> Due Date </label>
           <input
