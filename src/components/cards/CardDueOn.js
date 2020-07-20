@@ -43,7 +43,7 @@ function CardDueOn ({ card }) {
             className='btn-update-card-details'
             onClick={() => dispatch({ type: 'HANDLE_DUEDATE_FORM' })}
           >
-            Save- A-{card.duedate}
+            Save- A-{new Date(duedate).toLocaleString()}
           </button>
         </form>
       </div>
