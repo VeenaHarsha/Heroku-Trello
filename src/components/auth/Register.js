@@ -3,8 +3,8 @@ import { AuthContext } from '../context/auth/AuthContext'
 import { Link, Redirect } from 'react-router-dom'
 
 function Register () {
-  const { error, register, userAdded } = useContext(AuthContext)
-  const [isAdded, setIsAdded] = useState(false)
+  const { error, register, userRegistered } = useContext(AuthContext)
+  const [isReg, setIsReg] = useState(false)
   const [user, setUser] = useState({
     username: '',
     email: '',
@@ -23,7 +23,7 @@ function Register () {
       email,
       password
     })
-    setIsAdded(true)
+    setIsReg(true)
     setUser({
       username: '',
       email: '',
@@ -32,7 +32,7 @@ function Register () {
     })
   }
 
-  return (isAdded && userAdded)
+  return (isReg && userRegistered)
     ? (<Redirect to='/' />)
     : (<div className='register-container'>
       <form className='user-reg-form' onSubmit={registerTrello}>

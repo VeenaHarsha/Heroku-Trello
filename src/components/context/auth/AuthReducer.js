@@ -11,7 +11,7 @@ export default (state, action) => {
       return {
         ...state,
         ...action.payload,
-        userAdded: true
+        userRegistered: true
       }
 
     case 'LOGIN':

@@ -3,11 +3,12 @@ import { initialState, cardReducer } from './CardReducer'
 import { AppContext } from '../context/app/AppContext'
 import CopyCard from './CopyCard'
 import MoveCard from './MoveCard'
+import CardDueOn from './CardDueOn'
 
 function CardItemEditForm ({ card, list }) {
   const { handleDeleteCard, handleCardUpdate } = useContext(AppContext)
   const [state, dispatch] = useReducer(cardReducer, initialState)
-  const { showOverlay, showCopyCardForm, showMoveCardForm } = state
+  const { showOverlay, showCopyCardForm, showMoveCardForm, showDueDateForm } = state
   const [description, setDescription] = useState(card.description)
 
   const handleEditTextArea = (e) => {
@@ -71,7 +72,7 @@ function CardItemEditForm ({ card, list }) {
             </div>
             <div className='card-ops-a-tag'>
               <img className='card-image' src='/images/clock.png' alt='Move' />
-              <p className='card-label'>Change Due Date</p>
+              <p className='card-label' onClick={() => dispatch({ type: 'HANDLE_DUEDATE_FORM' })}>Change Due Date</p>
             </div>
             <div className='card-ops-a-tag'>
               <img className='card-image' src='/images/delete_26.png' alt='Delete' />
@@ -92,6 +93,11 @@ function CardItemEditForm ({ card, list }) {
         />}
       {showMoveCardForm &&
         <MoveCard
+          card={card}
+          list={list}
+        />}
+      {showDueDateForm &&
+        <CardDueOn
           card={card}
           list={list}
         />}

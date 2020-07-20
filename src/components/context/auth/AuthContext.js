@@ -3,7 +3,7 @@ import AuthReducer from './AuthReducer'
 
 const initialState = {
   token: window.localStorage.getItem('token'),
-  userAdded: false,
+  userRegistered: false,
   isAuthenticated: null,
   user: null,
   error: null
@@ -92,7 +92,7 @@ export const AuthContextProvider = (props) => {
   return (
     <AuthContext.Provider value={{
       token: state.token,
-      userAdded: state.userAdded,
+      userRegistered: state.userRegistered,
       isAuthenticated: state.isAuthenticated,
       user: state.user,
       error: state.error,
