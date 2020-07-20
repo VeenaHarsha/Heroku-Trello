@@ -283,6 +283,7 @@ export const AppContextProvider = (props) => {
       },
       body: JSON.stringify({ dueDate })
     }
+    console.log('Due Date Formdata:', cardId, dueDate)
     const response = await window.fetch(`https://trello-clone-wip.herokuapp.com/trello/card/updateDuedate/${cardId}`, options)
     const data = await response.json()
     console.log('Duedate result is:', data)

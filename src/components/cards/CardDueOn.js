@@ -28,6 +28,7 @@ function CardDueOn ({ card, list }) {
             <img className='card-del-image' src='/images/delete_26.png' alt='Close' />
           </span>
         </div>
+        
         <form className='copy-op-form' onSubmit={handleSubmit}>
           <label> Due Date </label>
           <input
@@ -42,13 +43,6 @@ function CardDueOn ({ card, list }) {
             onClick={() => dispatch({ type: 'HANDLE_DUEDATE_FORM' })}
           >
             Save
-          </button>
-          <button
-            type='submit'
-            className='btn-update-card-details'
-            onClick={() => dispatch({ type: 'HANDLE_MOVE_CARD_FORM' })}
-          >
-            Remove
           </button>
         </form>
       </div>
