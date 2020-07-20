@@ -18,7 +18,7 @@ function CardDueOn ({ card }) {
 
   return (
     <>
-      <div className={`card-editor-overlay copy-card-editor-overlay ${state.showDueDateForm ? 'hide' : 'show'}`}>
+      <div className={`card-editor-overlay duedate-overlay ${state.showDueDateForm ? 'hide' : 'show'}`}>
         <div className='copy-card-header'>
           <p className='copy-card-label'>Change Due Date</p>
           <span
@@ -43,7 +43,7 @@ function CardDueOn ({ card }) {
             className='btn-update-card-details'
             onClick={() => dispatch({ type: 'HANDLE_DUEDATE_FORM' })}
           >
-            Save
+            Save- A-{card.duedate}
           </button>
         </form>
       </div>

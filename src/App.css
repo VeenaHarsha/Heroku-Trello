@@ -724,6 +724,7 @@ li {
   font-weight: 900;
   color: black;
   cursor: pointer;
+  margin-left: 5vw;
 }
 
 .header {
@@ -760,4 +761,20 @@ li {
   width:10px;
   float: right;
   display: none;
+}
+.duedate-overlay {
+    margin-left:250px;
+    width: 300px;
+    height: 80px;
+    top: 80px;
+    left: 0px;
+    right: 0;
+    bottom: 0;
+    border-radius: 5px;
+    /* background-color: #e6e6e6; */
+    z-index: 11;
+    /* overflow-y: scroll; */
+    position: fixed;
+    cursor: pointer;
+    background: whitesmoke;
 }
