@@ -1,15 +1,21 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useContext, useState } from 'react'
 import { initialState, cardReducer } from './CardReducer'
+import { AppContext } from '../context/app/AppContext'
 
 function CardDueOn ({ card, list }) {
   const [state, dispatch] = useReducer(cardReducer, initialState)
+  const { handleDueDate } = useContext(AppContext)
+  const [dueDate, setDuedate] = useState('')
 
   const handleInputChange = (event) => {
-    const target = event.target
-    const name = target.name
-    const value = target.type === 'checkbox' ? target.checked : target.value
-    console.log('Vas:', { [name]: value })
+    setDuedate(event.target.value)
   }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    handleDueDate(card.id, dueDate)
+  }
+
   return (
     <>
       <div className={`card-editor-overlay copy-card-editor-overlay ${state.showDueDateForm ? 'hide' : 'show'}`}>
@@ -17,23 +23,23 @@ function CardDueOn ({ card, list }) {
           <p className='copy-card-label'>Change Due Date</p>
           <span
             className='copy-card-close-overlay'
-            onClick={() => dispatch({ type: 'HANDLE_MOVE_CARD_FORM_CLOSE' })}
+            onClick={() => dispatch({ type: 'HANDLE_DUEDATE_FORM_CLOSE' })}
           >
             <img className='card-del-image' src='/images/delete_26.png' alt='Close' />
           </span>
         </div>
-        <form className='copy-op-form' onC>
+        <form className='copy-op-form' onSubmit={handleSubmit}>
           <label> Due Date </label>
           <input
             type='date'
             name='dueDate'
-            defaultValue={new Date(card.dueDate)}
+            value={dueDate}
             onChange={handleInputChange}
           />
           <button
             type='submit'
             className='btn-update-card-details'
-            onClick={() => dispatch({ type: 'HANDLE_MOVE_CARD_FORM' })}
+            onClick={() => dispatch({ type: 'HANDLE_DUEDATE_FORM' })}
           >
             Save
           </button>

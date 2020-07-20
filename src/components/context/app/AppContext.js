@@ -275,6 +275,19 @@ export const AppContextProvider = (props) => {
     handleCopyCard(card.description, newBoardId, newListId)
     handleDeleteCard(card)
   }
+  const handleDueDate = async (cardId, dueDate) => {
+    const options = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ dueDate })
+    }
+    const response = await window.fetch(`https://trello-clone-wip.herokuapp.com/trello/card/updateDuedate/${cardId}`, options)
+    const data = await response.json()
+    console.log('Duedate result is:', data)
+    dispatch({ type: 'UPDATE_DUE_DATE', payload: data })
+  }
   return (
     <AppContext.Provider value={{
       boards: state.boards,
@@ -300,6 +313,7 @@ export const AppContextProvider = (props) => {
       handleCardUpdate: handleCardUpdate,
       handleCopyCard: handleCopyCard,
       handleMoveCard: handleMoveCard,
+      handleDueDate: handleDueDate,
       resetState: resetState
     }}
     >

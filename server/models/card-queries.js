@@ -67,4 +67,15 @@ const updateCardTitle = async (req, res) => {
   }
 }
 
-module.exports = { getCards, addCard, updateCardPosition, deleteCard, updateCardTitle, updateListIdInCard }
+const updateDuedate = async (req, res) => {
+  const { cardId } = req.params
+  const { dueDate } = req.body
+  try {
+    const query = ` UPDATE cards SET duedate = '${dueDate}' where id = ${cardId} RETURNING *`
+    const result = await pool.query(query)
+    res.status(200).json(result.rows)
+  } catch (err) {
+    return res.status(500).json({ message: 'Error..' })
+  }
+}
+module.exports = { getCards, addCard, updateCardPosition, deleteCard, updateCardTitle, updateListIdInCard, updateDuedate }

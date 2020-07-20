@@ -1,6 +1,6 @@
 import {
   GET_BOARD_LIST, ADD_BOARD, HANDLE_BOARD_CLICK, UPDATE_BOARD_TITLE, ADD_LIST, GET_LISTS, DELETE_CARD,
-  UPDATE_LIST_POSITION, UPDATE_LIST_TITLE, ADD_CARD, GET_LIST_CARDS, UPDATE_CARD_TITLE
+  UPDATE_LIST_POSITION, UPDATE_LIST_TITLE, ADD_CARD, GET_LIST_CARDS, UPDATE_CARD_TITLE, UPDATE_DUE_DATE
 } from '../../../actionType'
 
 export default (state, action) => {
@@ -163,6 +163,28 @@ export default (state, action) => {
         ...state,
         lists: newLists
       }
+    }
+    
+    case UPDATE_DUE_DATE : {
+        const newLists = (state.lists.map(list => {
+          return list.id === action.payload[0].listid
+            ? {
+              ...list,
+              cards: list.cards.map(
+                card => {
+                  return card.id === action.payload[0].id
+                    ? { ...card, description: action.payload[0].description }
+                    : card
+                }
+              )
+            }
+            : list
+        }))
+        return {
+          ...state,
+          lists: newLists
+        }
+      }      
     }
     case 'RESET_STATE' : {
       return {

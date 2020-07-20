@@ -32,8 +32,9 @@ export const cardReducer = (state, action) => {
         showCopyCardForm: !state.showCopyCardForm
       }
     }
-   
-    case 'HANDLE_DUEDATE_FORM': {
+
+    case 'HANDLE_DUEDATE_FORM':
+    case 'HANDLE_DUEDATE_FORM_CLOSE': {
       return {
         ...state,
         showDueDateForm: !state.showDueDateForm
