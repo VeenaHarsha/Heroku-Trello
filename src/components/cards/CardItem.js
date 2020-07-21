@@ -73,7 +73,12 @@ function CardItem ({ card, list, selBoard, selList }) {
       >
         <p className='card-desc'>
           {card.description}
-          {card.duedate === Date.now() && <p><small>Due on: {new Date(card.duedate).toLocaleString()}</small></p>}
+          {/* {(card.duedate.slice(0, 10) === new Date().toDateString().slice(4, 15)) && <p><small>Due on: {card.duedate.slice(0, 10)}</small></p>} */}
+          {/* {(new Date(card.duedate.slice(0, 10)).getTime() === new Date().getTime()) && <p><small>Due on: {card.duedate.slice(0, 10)}</small></p>} */}
+          {(new Date(card.duedate).toISOString().slice(0, 10) === new Date().toISOString().slice(0, 10)) &&
+            <p style={{ color: 'red' }}>
+              <small>Due on: {new Date(card.duedate).toDateString()}</small>
+            </p>}
         </p>
 
         <span

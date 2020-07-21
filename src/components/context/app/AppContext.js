@@ -276,6 +276,7 @@ export const AppContextProvider = (props) => {
     handleDeleteCard(card)
   }
   const handleDueDate = async (cardId, dueDate) => {
+    console.log('Due Date Formdata:', cardId, dueDate)
     const options = {
       method: 'PUT',
       headers: {
@@ -283,11 +284,14 @@ export const AppContextProvider = (props) => {
       },
       body: JSON.stringify({ dueDate: new Date(dueDate) })
     }
-    console.log('Due Date Formdata:', cardId, dueDate)
-    const response = await window.fetch(`https://trello-clone-wip.herokuapp.com/trello/card/updateDuedate/${cardId}`, options)
-    const data = await response.json()
-    console.log('Duedate result is:', data)
-    dispatch({ type: 'UPDATE_DUE_DATE', payload: data })
+    try {
+      const response = await window.fetch(`https://trello-clone-wip.herokuapp.com/trello/card/updateDuedate/${cardId}`, options)
+      const data = await response.json()
+      console.log('Duedate result is:', data)
+      dispatch({ type: 'UPDATE_DUE_DATE', payload: data })
+    } catch (err) {
+      dispatch({ type: 'ERROR', payload: err })
+    }
   }
   return (
     <AppContext.Provider value={{

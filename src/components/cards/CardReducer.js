@@ -81,11 +81,14 @@ export const cardReducer = (state, action) => {
     case HANDLE_CLOSE_OVERLAY: {
       const isMoveCardForm = state.showMoveCardForm ? !state.showMoveCardForm : state.showMoveCardForm
       const isCopyCardForm = state.showCopyCardForm ? !state.showCopyCardForm : state.showCopyCardForm
+      const isDuedateForm = state.showDueDateForm ? !state.showDueDateForm : state.showDueDateForm
+
       return {
         ...state,
         showOverlay: !state.showOverlay,
         showCopyCardForm: isCopyCardForm,
-        showMoveCardForm: isMoveCardForm
+        showMoveCardForm: isMoveCardForm,
+        showDueDateForm: isDuedateForm
       }
     }
     default: {

@@ -1,21 +1,19 @@
-import React, { useReducer, useContext, useState } from 'react'
-import { initialState, cardReducer } from './CardReducer'
+import React, { useContext, useState, useReducer } from 'react'
 import { AppContext } from '../context/app/AppContext'
+import { initialState, cardReducer } from './CardReducer'
 
 function CardDueOn ({ card }) {
-  const [state, dispatch] = useReducer(cardReducer, initialState)
   const { handleDueDate } = useContext(AppContext)
-  const [duedate, setDuedate] = useState(new Date(card.duedate))
-
-  const handleInputChange = (event) => {
-    setDuedate(event.target.value)
-  }
+  const [state, dispatch] = useReducer(cardReducer, initialState)
+  const [duedate, setDuedate] = useState(card.duedate)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     handleDueDate(card.id, duedate)
   }
-
+  const handleChangeInput = (e) => {
+    setDuedate(e.target.value)
+  }
   return (
     <>
       <div className={`card-editor-overlay duedate-overlay ${state.showDueDateForm ? 'hide' : 'show'}`}>
@@ -33,17 +31,15 @@ function CardDueOn ({ card }) {
           <label> Due Date </label>
           <input
             type='date'
-            // value={dueDate}
-            defaultValue={new Date(card.duedate)}
-            // value={duedate}
-            onChange={handleInputChange}
+            value={duedate.slice(0, 10)}
+            onChange={handleChangeInput}
           />
           <button
             type='submit'
             className='btn-update-card-details'
             onClick={() => dispatch({ type: 'HANDLE_DUEDATE_FORM' })}
           >
-            Save- {Date.now()}-{new Date(duedate).toLocaleString()}
+            Save
           </button>
         </form>
       </div>

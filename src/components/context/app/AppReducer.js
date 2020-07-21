@@ -166,6 +166,7 @@ export default (state, action) => {
     }
 
     case UPDATE_DUE_DATE : {
+      console.log('UPDATE DUE DATE:', action.payload)
       const newLists = (state.lists.map(list => {
         return list.id === action.payload[0].listid
           ? {
